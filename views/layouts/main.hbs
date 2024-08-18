@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+
+    
+</head>
+<body>
+<header class="columns is-vcentered p-3">
+    <div class="column has-text-centered">
+        <h3 class="title is-3">The Tech Blog</h3>
+    </div>
+    <div class="column has-text-centered">
+        <nav class="is-inline-block">
+            {{#if user}}
+            <p class="mr-2">Welcome, {{user.username}}</p>
+            <a class="mx-3 {{#if add}}is-active{{/if}}" href="/add">Add Post</a>
+            <a href="/logout">Log Out</a>
+            {{else}}
+            <a class="mr-2 {{#if login}}is-active{{/if}}" href="/login">Log In</a>
+            <span class="mr-2">or</span>
+            <a class="{{#if register}}is-active{{/if}}" href="/register">Register</a>
+            {{/if}}
+        </nav>
+    </div>
+</header>
+
+
+    <main>
+        {{{body}}} <!-- This is where the content from dashboard.handlebars will be injected -->
+    </main>
+</body>
+</html>
