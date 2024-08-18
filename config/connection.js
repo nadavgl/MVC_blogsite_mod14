@@ -1,12 +1,20 @@
-const {Sequelize} = require('sequelize')
+const Sequelize = require('sequelize');
+require('dotenv').config();
 
-const client = new Sequelize({
-    dialect: 'postgres',
-    host: 'localhost',
-    username: process.env.LOCAL_DB_USERNAME,
-    password: process.env.LOCAL_DB_PASSWORD,
-    database: process.env.LOCAL_DB_NAME
-})
+let sequelize;
 
+if (process.env.DB_URL) {
+  sequelize = new Sequelize(process.env.DB_URL);
+} else {
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      host: 'localhost',
+      dialect: 'postgres'
+    }
+  );
+}
 
-module.exports= client;
+module.exports = sequelize;
